@@ -1,0 +1,39 @@
+.alert {
+
+	@danger_color: #d9534f;
+	@success_color: #5fba7d;
+	@white: #FFFFFF; 
+	@black: #333;
+
+	@keyframes appear-from-top {
+		0% { 
+			opacity: 0;
+			transform: translateY(0);
+		}
+		100% { 
+			opacity: 1;
+			transform: translateY(10%);
+		}
+	}
+
+	padding: 1em;
+	position: fixed;
+	z-index:10;
+	max-width: 500px;
+	min-width: 200px;
+	text-align: right;
+	right: 15px;
+	top: 40px;
+	animation: 	appear-from-top 0.5s forwards, 
+				appear-from-top 0.5s 2s reverse forwards;
+
+	&.error {
+		background-color: @danger_color;
+		color: @white;
+	}
+
+	&.info {
+		background-color: @success_color;
+		color: @black;
+	}
+}

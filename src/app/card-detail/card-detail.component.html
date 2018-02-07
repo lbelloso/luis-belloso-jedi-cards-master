@@ -1,0 +1,26 @@
+<div class="xs-container">
+	<h1 class="text-center">Crear carta para el mazo {{ deck.title }}</h1>
+	<div class="form-section">
+		<label for="value">Valor</label>
+		<input type="text" name="value" [(ngModel)]="card.value">
+	</div>
+	<div class="form-section">
+		<label for="suit">Palo</label>
+		<input type="text" name="suit" [(ngModel)]="card.suit">
+  </div>
+  <div class="form-section">
+		<label for="image">Imagen</label>
+		<input type="text" name="image" [(ngModel)]="card.image">
+  </div>
+  <div class="form-section">
+		<label for="image">Id mazo</label>
+		<input type="text" name="image" disabled [ngModel]="card.deck_id">
+	</div>
+	<a 
+		class="btn btn-ok"
+		[class.disabled]="(!card.value || !card.suit)"
+		(click)="onSend()"
+	>
+		Enviar
+	</a>
+</div>

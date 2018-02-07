@@ -1,0 +1,54 @@
+<div class="sm-container">
+	<h1 class="text-center">Tus mazos</h1>
+	<ul >
+		<li
+			*ngFor="let deck of decks"
+			class="row middle-xs"
+		>
+			<div class="col-xs-4">
+				<h2>{{ deck.title }}</h2>
+				<h5>{{ deck.description }}</h5>
+			</div>
+			<div class="col-xs-2 text-right">
+				<i title="Show cards"
+					[routerLink]="['/cards', deck.id, deck.title]"
+					class="material-icons select-option-deck"
+				>dehaze</i>
+			</div>
+			<div class="col-xs-2 text-right">
+				<i title="Add card"
+					[routerLink]="['/card', deck.id, deck.title]"
+					class="material-icons select-option-deck"
+				>add</i>
+			</div>
+			<div class="col-xs-2 text-right">
+				<i title="Edit deck"
+				[routerLink]="['/deck', deck.id]"
+					class="material-icons select-option-deck"
+				>edit</i>
+			</div>
+			<div class="col-xs-2 text-right">
+				<i title="Delte deck"
+					(click)="onDeleteDeck(deck.id, $event)"
+					class="material-icons select-option-deck"
+				>delete</i>
+			</div>
+		</li>
+	</ul>
+	<div class="text-center">
+		<i *ngIf="!decks.length && !isLoading">
+			¡Vaya! Todavía no tienes creado ningún mazo.
+			<br>
+		</i>
+		<a [routerLink]="'/deck/create'" class="underline">
+			Crea un nuevo mazo.
+		</a>
+	</div>
+	<app-popup
+		#deletePopup
+		[popupTitle]="'Atención'"
+		(accept)="onAcceptDelete()"
+	>
+		Estás a punto de borrar un mazo. Esta acción es <b>irreversible</b>.
+	</app-popup>
+</div>

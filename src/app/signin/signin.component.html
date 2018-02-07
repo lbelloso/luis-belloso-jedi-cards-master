@@ -1,0 +1,85 @@
+<div class="login xs-container">
+		<h1 class="text-center">♢ JEDI Cards ♢</h1>
+		<h4 class="text-center">Regístrate a la aplicación</h4>
+		<form
+			#signInForm="ngForm"
+			(keyup.enter)="isFormSendable(signInForm.valid) && onSend()"
+		>
+			<div class="form-section">
+				<label for="name">Nombre</label>
+				<input 
+					required
+					type="text" 
+					name="name" 
+					[(ngModel)]="user.name"
+					#name="ngModel"
+				>
+				<small *ngIf="name.invalid && name.dirty">
+					Este campo es obligatorio.
+				</small>
+			</div>
+			<div class="form-section">
+				<label for="lastname">Apellidos</label>
+				<input 
+					required
+					type="text" 
+					name="lastname"
+					[(ngModel)]="user.lastName"
+					#lastName="ngModel"
+				>
+				<small *ngIf="lastName.invalid && lastName.dirty">
+					Este campo es obligatorio.
+				</small>	
+			</div>
+			<div class="form-section">
+				<label for="email">Email</label>
+				<input 
+					required
+					type="text" 
+					name="email"
+					[(ngModel)]="user.email"
+					#email="ngModel"
+				>
+				<small *ngIf="email.invalid && email.dirty">
+					Este campo es obligatorio.
+				</small>
+			</div>
+			<div class="form-section">
+				<label for="password">Password</label>
+				<input 
+					required
+					type="password" 
+					name="password"
+					minlength="6"
+					[(ngModel)]="user.password"
+					#password="ngModel"
+				>
+				<small *ngIf="password.invalid && password.dirty">
+					Este campo es obligatorio y debe tener almenos 6 carácteres.
+				</small>
+			</div>
+			<div class="form-section">
+				<label for="passwordRepeat">Repite tu password</label>
+				<input 
+					required
+					type="password" 
+					name="passwordRepeat"
+					[(ngModel)]="passwordRepeat"
+					#pwdRepeat="ngModel"
+				>
+				<small *ngIf="pwdRepeat.invalid && pwdRepeat.dirty">
+					Este campo es obligatorio.
+				</small>
+				<small *ngIf="pwdRepeat.dirty && !arePasswordsEqual()">
+					Las contraseñas no coinciden.
+				</small>
+			</div>
+		</form>
+		<br>
+		<a 
+			class="btn btn-ok" 
+			(click)="onSend()"
+			[class.disabled]="!isFormSendable(signInForm.valid)"
+		>{{ isLoading ? 'Cargando...' : 'Entrar' }}</a>
+	</div>
+	

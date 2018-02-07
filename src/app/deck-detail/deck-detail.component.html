@@ -1,0 +1,18 @@
+<div class="xs-container">
+	<h1 class="text-center">Crear un nuevo mazo</h1>
+	<div class="form-section">
+		<label for="title">Nombre</label>
+		<input type="text" name="title" [(ngModel)]="deck.title">
+	</div>
+	<div class="form-section">
+		<label for="description">Descripción</label>
+		<input type="text" name="description" [(ngModel)]="deck.description">
+	</div>
+	<a 
+		class="btn btn-ok"
+		[class.disabled]="!deck.title"
+		(click)="onSend()"
+	>
+		Enviar
+	</a>
+</div>
